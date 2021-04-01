@@ -1,13 +1,190 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
+  <view class="userinfo" style="display:inline">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  
+  <view class="searchbox" style="display:inline">
+    <input type="text" placeholder="请输入您要查询的内容"></input>
   </view>
+  <swiper class="for_or_to" indicator-dots="true" indicator-color="rgba(0,0,255,0.3)">
+  <swiper-item class="ask_for_help">
+      <view class="page_sec_top">请求帮忙</view>
+      <swiper class="ask_for_help_swiper" indicator-dots="false" indicator-color="rgba(255,0,0,0.3)" vertical="true">
+        <swiper-item class="express">这是快递
+            <form class="express_input" bindsubmit="sub_express">
+                  <view class="express_input_text" >
+                  <text style="display:inline-block">取快递点</text>
+                  <input class="express_input" name="takePlace" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="express_input_text" >
+                  <text style="display:inline-block">收快递点</text>
+                  <input class="express_input" name="tradePlace" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="express_input_text" >
+                  <text style="display:inline-block">快递公司</text>
+                  <input class="express_input"  name="company" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="express_input_text" >
+                  <text style="display:inline-block">货号</text>
+                  <input class="express_input"  name="artNo" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+              <checkbox-group class="exp_check_group">
+                <text>联系电话</text>
+                <checkbox checked="true" class="check_default">
+                  <text>默认</text>
+                </checkbox>
+                <checkbox class="check_others">
+                  <text>其他</text>
+                  <input type="text" value="{{keepSpace}}"  name="tel"/>
+                </checkbox>
+              </checkbox-group>
+              <view class="express_input_text">愿意支付的感谢金（单位：元）</view>
+              <input class="express_input"  name="reward" value="{{keepSpace}}" type="text"/>
+              <view class="express_input_text" >
+                  <text style="display:inline-block">备注</text>
+                  <input class="express_input"  value="{{keepSpace}}" name="remark" style="display:inline-block" type="text"/>
+                </view>
+              <button type="default" form-type="submit"  class="index_submit">提交订单</button>
+            </form>
+        </swiper-item>
+        <swiper-item class="takeout">这是外卖
+          <form class="takeout_input" bindsubmit="sub_takeout">
+                  <view class="takeout_input_text" >
+                  <text style="display:inline-block">取外卖点</text>
+                  <input class="takeout_input" name="takePlace" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="takeout_input_text" >
+                  <text style="display:inline-block">收外卖点</text>
+                  <input class="takeout_input" name="tradePlace" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="takeout_input_text" >
+                  <text style="display:inline-block">送餐公司</text>
+                  <input class="takeout_input"  name="company" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="takeout_input_text" >
+                  <text style="display:inline-block">预计送达时间</text>
+                  <input class="takeout_input"  name="arriveTime" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+              <checkbox-group class="exp_check_group">
+                <text>联系电话</text>
+                <checkbox checked="true" class="check_default">
+                  <text>默认</text>
+                </checkbox>
+                <checkbox class="check_others">
+                  <text>其他</text>
+                  <input type="text" value="{{keepSpace}}"  name="tel"/>
+                </checkbox>
+              </checkbox-group>
+              <view class="takeout_input_text">愿意支付的感谢金（单位：元）</view>
+              <input class="takeout_input"  name="reward" value="{{keepSpace}}" type="text"/>
+              <view class="takeout_input_text" >
+                  <text style="display:inline-block">备注</text>
+                  <input class="takeout_input"  value="{{keepSpace}}" name="remark" style="display:inline-block" type="text"/>
+                </view>
+              <button type="default" form-type="submit"  class="index_submit">提交订单</button>
+            </form>
+        </swiper-item>
+        <swiper-item class="canteen">这是食堂
+          <form class="express_input" bindsubmit="sub_canteen">
+                  <view class="express_input_text" >
+                  <text style="display:inline-block">食堂窗口</text>
+                  <input class="express_input" name="window" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="express_input_text" >
+                  <text style="display:inline-block">食物类型</text>
+                  <input class="express_input" name="foodType" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="express_input_text" >
+                  <text style="display:inline-block">交易地点</text>
+                  <input class="express_input"  name="tradePlace" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+                <view class="express_input_text" >
+                  <text style="display:inline-block">交易时间</text>
+                  <input class="express_input"  name="tradeTime" value="{{keepSpace}}" style="display:inline-block" type="text"/>
+                </view>
+              <checkbox-group class="exp_check_group">
+                <text>联系电话</text>
+                <checkbox checked="true" class="check_default">
+                  <text>默认</text>
+                </checkbox>
+                <checkbox class="check_others">
+                  <text>其他</text>
+                  <input type="text" value="{{keepSpace}}"  name="tel"/>
+                </checkbox>
+              </checkbox-group>
+              <view class="express_input_text">愿意支付的感谢金（单位：元）</view>
+              <input class="express_input"  name="reward" value="{{keepSpace}}" type="text"/>
+              <view class="express_input_text" >
+                  <text style="display:inline-block">备注</text>
+                  <input class="express_input"  value="{{keepSpace}}" name="remark" style="display:inline-block" type="text"/>
+                </view>
+              <button type="default" form-type="submit"  class="index_submit">提交订单</button>
+            </form>
+        </swiper-item>
+
+      </swiper>
+  </swiper-item>
+  <swiper-item class="to_help">
+    <view class="page_sec_top">我来帮忙</view>
+    <swiper class="to_help_swiper" indicator-dots="false" indicator-color="rgba(0,255,0,0.3)" vertical="true">
+      <swiper-item class="to_express">这是快递
+        <view wx:for="{{orders}}" wx:key="{{orderNo}}">
+          <block wx:if='{{item.orderType=="express"}}'>
+            <view class='orderMsg'>
+              订单编号：{{item.orderNo}} 
+              订单发起者{{item.promulgator}}
+              订单发起时间：{{item.time}}
+              快递公司{{item.company}} 
+              取快递地点{{item.takePlace}} 
+              收快递地点{{item.tradePlace}}
+              快递货号：{{item.artNo}} 
+              联系电话{{item.tel}} 
+              报酬{{item.reward}} 
+              备注{{item.remark}}
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+      <swiper-item class="to_takeout">这是外卖
+        <view wx:for="{{orders}}" wx:key="{{orderNo}}">
+          <block wx:if='{{item.orderType=="takeout"}}'>
+            <view class='orderMsg'>
+              订单编号：{{item.orderNo}} 
+              订单发起者{{item.promulgator}}
+              订单发起时间：{{item.time}}
+              送餐公司{{item.company}} 
+              取外卖地点{{item.takePlace}} 
+              收外卖地点{{item.tradePlace}}
+              预计送达时间：{{item.arriveTime}} 
+              联系电话{{item.tel}} 
+              报酬{{item.reward}} 
+              备注{{item.remark}}
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+      <swiper-item class="to_canteen">这是食堂
+        <view wx:for="{{orders}}" wx:key="{{orderNo}}">
+          <block wx:if='{{item.orderType=="canteen"}}'>
+            <view class='orderMsg'>
+              订单编号：{{item.orderNo}} 
+              订单发起时间：{{item.time}}
+              订单发起者{{item.promulgator}}
+              食堂窗口{{item.window}} 
+              食物类型{{item.foodType}} 
+              交易地点{{item.tradePlace}}
+              联系电话{{item.tel}} 
+              报酬{{item.reward}} 
+              备注{{item.remark}}
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+    </swiper>
+  </swiper-item>
+</swiper>
 </view>

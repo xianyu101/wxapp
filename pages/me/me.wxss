@@ -1,0 +1,17 @@
+.user_text{
+  float: left;
+}
+.user{
+  height: 300rpx;
+}
+.user_avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  position: relative;
+  float: left;
+}
+.accepted_order_view,.released_order_view{
+  height: 250rpx;
+}

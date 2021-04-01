@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="user">
+    <view class="user_avatar">
+      <block>
+        <image>等一个用户头像</image>
+      </block>
+    </view>
+    <view class="user_text">
+        <text class="nickname" style="display:block">用户昵称</text>
+        <text class="id" style="display:block">用户id</text>
+        <text class="signature" style="display:block">个性签名</text>
+    </view>
+  </view>
+  <view class="accepted_order">
+    <text>我接受的订单</text>
+    <scroll-view class="accepted_order_view" scroll-y="true" >
+      <view>text1</view>
+      <view>text2</view>
+      <view>text3</view>
+      <view>text4</view>
+      <view>text1</view>
+      <view>text2</view>
+      <view>text3</view>
+      <view>text4</view>
+      <view>text1</view>
+      <view>text2</view>
+      <view>text3</view>
+      <view>text4</view>
+    </scroll-view>
+  </view>
+  <view class="released_order">
+    <text>我发布的订单</text>
+    <scroll-view class="released_order_view" scroll-y="true" >
+      <view>text1</view>
+      <view>text2</view>
+      <view>text3</view>
+      <view>text4</view>
+      <view>text1</view>
+      <view>text2</view>
+      <view>text3</view>
+      <view>text4</view>
+      <view>text1</view>
+      <view>text2</view>
+      <view>text3</view>
+      <view>text4</view>
+    </scroll-view>
+  </view>
+  <button type="default" bindtap="goToAllOrders">查看全部订单</button>
+</view>

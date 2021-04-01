@@ -1,0 +1,20 @@
+.just_for_show{
+  text-align: center;
+  
+}
+.top_bar{
+  height: 160rpx;
+}
+.user_avatar{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  position: relative;
+  float: left;
+}
+.search_bar{
+  float: left;
+  height: 100rpx;
+  width: 70%;
+}
