@@ -1,0 +1,14 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+      <view>{{orderNo}}</view>
+      <view>{{promulgator}}</view>
+      <view>{{time}}</view>
+      <view>{{company}}</view>
+      <view>{{takePlace}}</view>
+      <view>{{tradePlace}}</view>
+      <view>{{artNo}}</view>
+      <view>{{tel}}</view>
+      <view>{{reward}}</view>
+      <view>{{remark}}</view>
+      <button bindtap="accOrder">接受订单</button>
+</view>

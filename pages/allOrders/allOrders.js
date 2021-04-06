@@ -1,4 +1,5 @@
 // pages/allOrders//allOrders.js
+var orders=[]
 Page({
 
   /**
@@ -12,7 +13,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let app=getApp();
+    orders=app.globalData.order;
+    this.setData({
+      orders
+    })
   },
 
   /**
@@ -62,5 +67,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  navToDetail:function(e){
+    let index=e.currentTarget.dataset.index;
+    wx.navigateTo({
+      url: '/pages/showDetail/showDetail?index='+index,
+    })
+    console.log(index)
   }
 })

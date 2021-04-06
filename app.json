@@ -1,13 +1,16 @@
 {
   "pages":[
     
-    "pages/index/index",
-    "pages/test/test",
     
+    "pages/index/index",
     "pages/chatInterface/chatInterface",
     "pages/msg/msg",
+    "pages/navToAccept",
+    "pages/test/test",
     "pages/me/me",
-    "pages/allOrders/allOrders"
+    "pages/allOrders/allOrders",
+    "pages/detail/detail",
+    "pages/showDetail/showDetail"
     
     
   ],

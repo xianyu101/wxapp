@@ -1,2 +1,7 @@
-<!--pages/allOrders//allOrders.wxml-->
-<text>pages/allOrders//allOrders.wxml</text>
+<view class="container">
+  <view wx:for="{{orders}}" wx:key="{{index}}" bindtouchend="navToDetail" data-index="{{index}}">
+    <block wx:for="{{orders[index]}}">
+      {{item}}
+    </block>
+  </view>
+</view>

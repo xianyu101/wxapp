@@ -14,35 +14,43 @@
   <view class="accepted_order">
     <text>我接受的订单</text>
     <scroll-view class="accepted_order_view" scroll-y="true" >
-      <view>text1</view>
-      <view>text2</view>
-      <view>text3</view>
-      <view>text4</view>
-      <view>text1</view>
-      <view>text2</view>
-      <view>text3</view>
-      <view>text4</view>
-      <view>text1</view>
-      <view>text2</view>
-      <view>text3</view>
-      <view>text4</view>
+      <view wx:for="{{orders}}" wx:key="{{orderNo}}" bindtouchend="navToDetail" data-index="{{index}}">
+        <block wx:if="{{item.deliveryMan=='admin'}}">
+              订单编号：{{item.orderNo}} 
+              订单发起者{{item.promulgator}}
+              订单发起时间：{{item.time}}
+              订单状态：{{item.isAccept}}
+              快递公司{{item.company}} 
+              取快递地点{{item.takePlace}} 
+              收快递地点{{item.tradePlace}}
+              快递货号：{{item.artNo}} 
+              联系电话{{item.tel}} 
+              报酬{{item.reward}} 
+              备注{{item.remark}}
+        </block>
+      
+      </view>
     </scroll-view>
   </view>
   <view class="released_order">
     <text>我发布的订单</text>
     <scroll-view class="released_order_view" scroll-y="true" >
-      <view>text1</view>
-      <view>text2</view>
-      <view>text3</view>
-      <view>text4</view>
-      <view>text1</view>
-      <view>text2</view>
-      <view>text3</view>
-      <view>text4</view>
-      <view>text1</view>
-      <view>text2</view>
-      <view>text3</view>
-      <view>text4</view>
+      <view wx:for="{{orders}}" wx:key="{{orderNo}}" bindtouchend="navToDetail" data-index="{{index}}">
+        <block wx:if="{{item.promulgator=='admin'}}">
+              订单编号：{{item.orderNo}} 
+              订单发起者{{item.promulgator}}
+              订单发起时间：{{item.time}}
+              订单状态：{{item.isAccept}}
+              快递公司{{item.company}} 
+              取快递地点{{item.takePlace}} 
+              收快递地点{{item.tradePlace}}
+              快递货号：{{item.artNo}} 
+              联系电话{{item.tel}} 
+              报酬{{item.reward}} 
+              备注{{item.remark}}
+        </block>
+      
+      </view>
     </scroll-view>
   </view>
   <button type="default" bindtap="goToAllOrders">查看全部订单</button>

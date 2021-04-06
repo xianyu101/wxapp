@@ -1,14 +1,24 @@
 // index.js
 // 获取应用实例
+module.exports={
+  order:ordersTemp
+}
+
 const app = getApp();
 var orders=[];
 var orderNo=0;
+var ordersTemp=[];
+function storagethat(){
+  ordersTemp=orders;
+}
 function initData(that){
   orders=[{
     orderNo:orderNo,
     orderType:"canteen",
     promulgator:"usertest",
     time:new Date(),
+    isAccept:"unaccept",
+    deliveryMan:"unaccept",
     window:"2-15",
     foodType:"鱼香肉丝+米饭",
     tradePlace:"4舍楼下",
@@ -65,7 +75,12 @@ Page({
         }
       })
     }
+    storagethat()
   },
+  onHide(){
+  storagethat()
+  },
+  
   getUserInfo(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -100,6 +115,8 @@ getDate:function() {
       orderType:'express',
       promulgator:'admin',
       time:tempTime,
+      isAccept:"unaccept",
+      deliveryMan:"unaccept",
       takePlace:data.detail.value.takePlace,
       tradePlace:data.detail.value.tradePlace,
       company:data.detail.value.company,
@@ -111,7 +128,9 @@ getDate:function() {
     console.log(orderNo)
     console.log("express")
     console.log("admin")
-    console.log(new Date())
+    console.log(tempTime)
+    console.log("unaccept")
+    console.log("unaccept")
     console.log(data.detail.value.takePlace)
     console.log(data.detail.value.tradePlace)
     console.log(data.detail.value.company)
@@ -122,16 +141,32 @@ getDate:function() {
     orderNo++
     this.setData({
       keepSpace:'',
+      orders,
+    })
+   this.refreshOrder();
+  },
+  refreshOrder:function(){
+    var app=getApp();
+    app.globalData.order=orders;
+    console.log(app.globalData.order)
+  },
+  changeSituation:function(num){
+    orders[num].isAccept="accept";
+    orders[num].deliveryMan="admin";
+    this.setData({
       orders
     })
+    this.refreshOrder();
   },
-
   sub_takeout:function(data){
+    var tempTime=this.getDate();
     orders.push({
       orderNo:orderNo,
       orderType:'takeout',
       promulgator:'admin',
-      time:new Date(),
+      time:tempTime,
+      isAccept:'unaccept',
+      deliveryMan:"unaccept",
       takePlace:data.detail.value.takePlace,
       tradePlace:data.detail.value.tradePlace,
       company:data.detail.value.company,
@@ -143,7 +178,9 @@ getDate:function() {
     console.log(orderNo)
     console.log("takeout")
     console.log("admin")
-    console.log(new Date())
+    console.log(tempTime)
+    console.log("unaccept")
+    console.log("unaccept")
     console.log(data.detail.value.takePlace)
     console.log(data.detail.value.tradePlace)
     console.log(data.detail.value.company)
@@ -156,13 +193,18 @@ getDate:function() {
       keepSpace:'',
       orders
     })
+    this.refreshOrder();
+    
   },
   sub_canteen:function(data){
+    var tempTime=this.getDate();
     orders.push({
       orderNo:orderNo,
       orderType:'canteen',
       promulgator:'admin',
-      time:new Date(),
+      time:tempTime,
+      isAccept:"unaccept",
+      deliveryMan:"unaccept",
       window:data.detail.value.window,
       tradePlace:data.detail.value.tradePlace,
       foodType:data.detail.value.foodType,
@@ -174,7 +216,9 @@ getDate:function() {
     console.log(orderNo)
     console.log("canteen")
     console.log("admin")
-    console.log(new Date())
+    console.log(tempTime)
+    console.log("unaccept")
+    console.log("unaccept")
     console.log(data.detail.value.window)
     console.log(data.detail.value.tradePlace)
     console.log(data.detail.value.foodType)
@@ -187,5 +231,66 @@ getDate:function() {
       keepSpace:'',
       orders
     })
-  }
+    wx.setStorage({
+      order:orders
+    })
+    this.refreshOrder();
+  },
+  acceptOrder:function(data){
+    orders.isAccept="accept";
+    console.log(orders.isAccept);
+    this.setData({
+      orders
+    })
+  },
+  navToAccept:function(e){
+    let orderNo=e.currentTarget.dataset.orderno
+    let promulgator=e.currentTarget.dataset.promulgator
+    let time=e.currentTarget.dataset.time
+    let company=e.currentTarget.dataset.company
+    let takePlace=e.currentTarget.dataset.takeplace
+    let tradePlace=e.currentTarget.dataset.tradeplace
+    let artNo=e.currentTarget.dataset.artno
+    let tel=e.currentTarget.dataset.tel
+    let reward=e.currentTarget.dataset.reward
+    let remark=e.currentTarget.dataset.remark
+    wx.navigateTo({
+      url: '/pages/detail/detail?orderNo='+orderNo+'&promulgator='+promulgator+'&time='+time+'&company='+company+'&takePlace='+takePlace+'&tradePlace='+tradePlace+'&artNo='+artNo+'&tel='+tel+'&reward='+reward+'&remark='+remark,
+    })
+    
+  },
+  navToAccept1:function(e){
+    let orderNo=e.currentTarget.dataset.orderno
+    let promulgator=e.currentTarget.dataset.promulgator
+    let time=e.currentTarget.dataset.time
+    let company=e.currentTarget.dataset.company
+    let takePlace=e.currentTarget.dataset.takeplace
+    let tradePlace=e.currentTarget.dataset.tradeplace
+    let arriveTime=e.currentTarget.dataset.arriveTime
+    let tel=e.currentTarget.dataset.tel
+    let reward=e.currentTarget.dataset.reward
+    let remark=e.currentTarget.dataset.remark
+    wx.navigateTo({
+      url: '/pages/detail/detail?orderNo='+orderNo+'&promulgator='+promulgator+'&time='+time+'&company='+company+'&takePlace='+takePlace+'&tradePlace='+tradePlace+'&arriveTime='+arriveTime+'&tel='+tel+'&reward='+reward+'&remark='+remark,
+    })
+    
+  },
+  navToAccept2:function(e){
+    let orderNo=e.currentTarget.dataset.orderno
+    let promulgator=e.currentTarget.dataset.promulgator
+    let time=e.currentTarget.dataset.time
+    let window=e.currentTarget.dataset.window
+    let foodType=e.currentTarget.dataset.foodType
+    let tradePlace=e.currentTarget.dataset.tradeplace
+    let tel=e.currentTarget.dataset.tel
+    let reward=e.currentTarget.dataset.reward
+    let remark=e.currentTarget.dataset.remark
+    wx.navigateTo({
+      url: '/pages/detail/detail?orderNo='+orderNo+'&promulgator='+promulgator+'&time='+time+'&window='+window+'&foodType='+foodType+'&tradePlace='+tradePlace+'&tel='+tel+'&reward='+reward+'&remark='+remark,
+    })
+    
+  },
+  
+  
 })
+

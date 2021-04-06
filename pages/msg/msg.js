@@ -1,4 +1,6 @@
 // pages/msg/msg.js
+var orders=[]
+var length=0
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+  
   },
 
   /**
@@ -26,7 +28,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let app=getApp();
+    orders=app.globalData.order;
+    length=orders.length;
+    this.setData({
+      orders,
+      length
+    })
   },
 
   /**

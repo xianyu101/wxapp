@@ -1,0 +1,8 @@
+<!--pages/showDetail/showDetail.wxml-->
+<view class="container">
+  <view>
+    <view wx:for="{{order}}" wx:key="{{index}}">
+      <text>{{item}}</text>
+    </view>
+  </view>
+</view>

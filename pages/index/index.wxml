@@ -135,9 +135,15 @@
         <view wx:for="{{orders}}" wx:key="{{orderNo}}">
           <block wx:if='{{item.orderType=="express"}}'>
             <view class='orderMsg'>
+              <scroll-view bindtouchend="navToAccept" data-orderNo="{{item.orderNo}}" data-promulgator="{{item.promulgator}}"
+              data-time="{{item.time}}" data-company="{{item.company}}" data-takePlace="{{item.takePlace}}" 
+              data-tradePlace="{{item.tradePlace}}" data-artNo="{{item.artNo}}" data-tel="{{item.tel}}"
+              data-reward="{{item.reward}}" data-remark="{{item.remark}}">
+           
               订单编号：{{item.orderNo}} 
               订单发起者{{item.promulgator}}
               订单发起时间：{{item.time}}
+              订单状态：{{item.isAccept}}
               快递公司{{item.company}} 
               取快递地点{{item.takePlace}} 
               收快递地点{{item.tradePlace}}
@@ -145,6 +151,7 @@
               联系电话{{item.tel}} 
               报酬{{item.reward}} 
               备注{{item.remark}}
+              </scroll-view> 
             </view>
           </block>
         </view>
@@ -153,16 +160,23 @@
         <view wx:for="{{orders}}" wx:key="{{orderNo}}">
           <block wx:if='{{item.orderType=="takeout"}}'>
             <view class='orderMsg'>
+              <scroll-view bindtouchend="navToAccept1" data-orderNo="{{item.orderNo}}" data-promulgator="{{item.promulgator}}"
+              data-time="{{item.time}}" data-company="{{item.company}}" data-takePlace="{{item.takePlace}}" 
+              data-tradePlace="{{item.tradePlace}}" data-arriveTime="{{item.arriveTime}}" data-tel="{{item.tel}}"
+              data-reward="{{item.reward}}" data-remark="{{item.remark}}">
+           
               订单编号：{{item.orderNo}} 
               订单发起者{{item.promulgator}}
               订单发起时间：{{item.time}}
+              订单状态：{{item.isAccept}}
               送餐公司{{item.company}} 
               取外卖地点{{item.takePlace}} 
               收外卖地点{{item.tradePlace}}
-              预计送达时间：{{item.arriveTime}} 
+              预计送达时间：{{item.arriveTime}}
               联系电话{{item.tel}} 
               报酬{{item.reward}} 
               备注{{item.remark}}
+              </scroll-view> 
             </view>
           </block>
         </view>
@@ -171,15 +185,22 @@
         <view wx:for="{{orders}}" wx:key="{{orderNo}}">
           <block wx:if='{{item.orderType=="canteen"}}'>
             <view class='orderMsg'>
+              <scroll-view bindtouchend="navToAccept1" data-orderNo="{{item.orderNo}}" data-promulgator="{{item.promulgator}}"
+              data-time="{{item.time}}" data-window="{{item.window}}" 
+              data-tradePlace="{{item.tradePlace}}" data-foodType="{{item.foodType}}" data-tel="{{item.tel}}"
+              data-reward="{{item.reward}}" data-remark="{{item.remark}}">
+           
               订单编号：{{item.orderNo}} 
-              订单发起时间：{{item.time}}
               订单发起者{{item.promulgator}}
-              食堂窗口{{item.window}} 
-              食物类型{{item.foodType}} 
+              订单发起时间：{{item.time}}
+              订单状态：{{item.isAccept}}
+              食堂窗口{{item.window}}  
               交易地点{{item.tradePlace}}
+              食物类型：{{item.foodType}}
               联系电话{{item.tel}} 
               报酬{{item.reward}} 
               备注{{item.remark}}
+              </scroll-view> 
             </view>
           </block>
         </view>

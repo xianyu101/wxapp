@@ -1,14 +1,10 @@
 <view class="container">
-  <view class="top_bar" style="display:block"> 
-    <view class="user_avatar" style="display:inline" >
-      <image class="user_ava">等一个wx头像</image>
-    </view>
-    <view class="search_bar" style="display:inline">
-      <input type="text" class="msg_search_bar"/>
-    </view>
-  </view>
-  <view class="just_for_show">
-    <text>消息</text>
+  <view>
+    <view>平台累计{{length}}条订单</view>
+    <view>平台累计金额交易{{}}</view>
+    <view>个人累计收益{{}}</view>
+    <view>个人累计支出{{}}</view>
+    <view>个人净收益{{}}</view>   
   </view>
 </view>
      

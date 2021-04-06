@@ -1,23 +1,18 @@
-// pages/me/me.js
-var orders=[]
+// pages/navToAccept.js
 Page({
 
   /**
    * 页面的初始数据
    */
-
   data: {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  
   onLoad: function (options) {
-    this.setData({
-      orders
-    })
+
   },
 
   /**
@@ -31,12 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var app=getApp();
-    orders=app.globalData.order
-    this.setData({
-      orders
-    })
-    console.log(app.globalData.order)
+
   },
 
   /**
@@ -72,19 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  goToAllOrders: function(){
-    wx.navigateTo({
-      url: '/pages/allOrders/allOrders',
-    })
-  },
-  navToDetail:function(e){
-    let index=e.currentTarget.dataset.index
-    wx.navigateTo({
-      url: '/pages/showDetail/showDetail?index='+index,
-    })
-    console.log(e.currentTarget.dataset.index)
-    console.log(index)
   }
 })
